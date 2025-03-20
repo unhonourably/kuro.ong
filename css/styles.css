@@ -934,4 +934,92 @@ h1 {
             0 0 15px rgba(114, 137, 218, 0.5),
             0 0 20px rgba(114, 137, 218, 0.3);
     }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .profile-card {
+        width: 90%;
+        padding: 15px;
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .social-link {
+        margin: 8px;
+        font-size: 1.5em; /* Larger touch targets on mobile */
+    }
+    
+    .now-playing {
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    /* Modal adjustments for mobile */
+    .modal .modal-content {
+        width: 90%;
+        max-height: 80vh;
+        padding: 15px;
+    }
+    
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    /* Make bot cards stack properly on mobile */
+    .bot-content {
+        flex-direction: column;
+    }
+    
+    .bot-image {
+        margin-bottom: 10px;
+    }
+    
+    /* Audio controller adjustments */
+    .audio-controller {
+        padding: 10px;
+    }
+    
+    .audio-controls {
+        flex-wrap: wrap;
+    }
+    
+    .control-btn {
+        padding: 8px;
+        margin: 3px;
+    }
+    
+    .volume-slider-container {
+        width: 80px;
+    }
+}
+
+/* Fix for iOS Safari specific issues */
+@supports (-webkit-touch-callout: none) {
+    .modal {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    input[type="range"] {
+        height: 24px; /* Better touch experience on iOS */
+    }
+}
+
+/* Bot list and collab list styling (moved from inline) */
+.bot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.collab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 } 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>unhonourably</title>
     <link rel="icon" type="image/png" href="assets/other/moon.png">
     <link rel="stylesheet" href="css/styles.css">
@@ -43,24 +43,24 @@
                 </div>
             </div>
             <div class="social-links">
-                <a href="https://twitter.com/unhonourably" class="social-link" target="_blank">
+                <a href="https://twitter.com/unhonourably" class="social-link" target="_blank" aria-label="Twitter">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://www.instagram.com/kurongl/" class="social-link" target="_blank">
+                <a href="https://www.instagram.com/kurongl/" class="social-link" target="_blank" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://github.com/unhonourably" class="social-link" target="_blank">
+                <a href="https://github.com/unhonourably" class="social-link" target="_blank" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="social-link" id="discord-trigger">
+                <a href="#" class="social-link" id="discord-trigger" aria-label="Discord Servers">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="#" class="social-link more-link" id="more-info">
-                    <i class="fas fa-question"></i>
+                <a href="#" class="social-link more-link" id="more-info" aria-label="More Information">
+                    <i class="fas fa-book"></i>
                 </a>
                 <div class="now-playing">
-                    <a href="#" class="album-art" id="track-link" target="_blank">
-                        <img src="https://placehold.co/50x50" alt="Album Art" id="album-art">
+                    <a href="#" class="album-art" id="track-link" target="_blank" aria-label="Current Track">
+                        <img src="https://placehold.co/50x50" alt="Album Art" id="album-art" loading="lazy">
                         <i class="fab fa-lastfm"></i>
                     </a>
                     <div class="now-playing-content">
@@ -73,9 +73,9 @@
     </div>
 
     <!-- Discord Modal -->
-    <div class="modal" id="discord-modal">
+    <div class="modal" id="discord-modal" role="dialog" aria-modal="true" aria-labelledby="discord-title">
         <div class="modal-content">
-            <button class="close-modal"></button>
+            <button class="close-modal" aria-label="Close"></button>
             <div class="discord-servers">
                 <!-- Server cards will be added here dynamically -->
             </div>
@@ -83,19 +83,18 @@
     </div>
 
     <!-- More Info Modal with class structure matching the Discord modal -->
-    <div class="modal" id="more-modal">
+    <div class="modal" id="more-modal" role="dialog" aria-modal="true" aria-labelledby="more-info-title">
         <div class="modal-content">
-            <button class="close-modal"></button>
+            <button class="close-modal" aria-label="Close"></button>
             <div class="more-content">
-                <h1>More Information</h1>
                 <div class="info-section">
                     <h2>Projects</h2>
-                    <div class="bot-list" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="bot-list">
                         <div class="bot-card">
                             <span class="role-tag">Owner & Dev</span>
                             <div class="bot-content">
                                 <div class="bot-image">
-                                    <img src="assets/bots/ticketsmaster.png" alt="Ticketsmaster">
+                                    <img src="assets/bots/ticketsmaster.png" alt="Ticketsmaster" loading="lazy">
                                 </div>
                                 <div class="bot-text">
                                     <h3><a href="https://ticketsmaster.xyz" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Ticketsmaster</a></h3>
@@ -107,7 +106,7 @@
                             <span class="role-tag">Owner & Dev</span>
                             <div class="bot-content">
                                 <div class="bot-image">
-                                    <img src="assets/bots/monster.png" alt="Monster">
+                                    <img src="assets/bots/monster.png" alt="Monster" loading="lazy">
                                 </div>
                                 <div class="bot-text">
                                     <h3><a href="https://monsterbot.dev" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Monster</a></h3>
@@ -119,7 +118,7 @@
                             <span class="role-tag">Dev</span>
                             <div class="bot-content">
                                 <div class="bot-image">
-                                    <img src="assets/bots/evict.gif" alt="Evict">
+                                    <img src="assets/bots/evict.gif" alt="Evict" loading="lazy">
                                 </div>
                                 <div class="bot-text">
                                     <h3><a href="https://evict.bot" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Evict</a></h3>
@@ -131,7 +130,7 @@
                 </div>
                 <div class="info-section">
                     <h2>Worked With</h2>
-                    <div class="collab-list" style="display: flex; flex-direction: column; gap: 15px;">
+                    <div class="collab-list">
                         <div class="collab-card">
                             <div class="collab-avatar">
                                 <img src="assets/associates/packgod.png" alt="Packgod">
