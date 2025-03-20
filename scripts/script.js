@@ -5,11 +5,38 @@ const LASTFM_USERNAME = window.config.LASTFM_USERNAME;
 console.log('API Key:', LASTFM_API_KEY);
 console.log('Username:', LASTFM_USERNAME);
 
-// Remove bio rotation functionality since we're not using it anymore
-// const bioElement = document.querySelector('.bio');
-// function updateBio() {...}
-// updateBio();
-// setInterval(updateBio, 5000);
+// Bio rotation functionality
+let currentBioIndex = 0;
+const bioElement = document.querySelector('.bio');
+
+function updateBio() {
+    // Add null check to prevent error when bioElement doesn't exist
+    if (!bioElement) {
+        console.log('Bio element not found, skipping bio rotation');
+        return; // Exit the function early if bioElement doesn't exist
+    }
+    
+    // Remove visible class to trigger exit animation
+    bioElement.classList.remove('visible');
+    
+    // Wait for exit animation to complete
+    setTimeout(() => {
+        // Update text
+        bioElement.textContent = bios[currentBioIndex];
+        
+        // Add visible class to trigger enter animation
+        bioElement.classList.add('visible');
+        
+        // Move to next bio
+        currentBioIndex = (currentBioIndex + 1) % bios.length;
+    }, 500); // Match this with CSS transition duration
+}
+
+// Start bio rotation - with null check
+if (bioElement) {
+updateBio();
+setInterval(updateBio, 5000); // Change bio every 5 seconds
+}
 
 // Function to fetch Last.fm now playing - updated with null checks
 async function fetchNowPlaying() {
@@ -161,14 +188,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Add a subtle animation to the profile card on load
 document.addEventListener('DOMContentLoaded', () => {
     const profileCard = document.querySelector('.profile-card');
-    profileCard.style.opacity = '0';
-    profileCard.style.transform = 'translateY(20px)';
     
-    setTimeout(() => {
-        profileCard.style.transition = 'all 0.5s ease';
-        profileCard.style.opacity = '1';
-        profileCard.style.transform = 'translateY(0)';
-    }, 100);
+    // Add null check before accessing properties
+    if (profileCard) {
+        profileCard.style.opacity = '0';
+        profileCard.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            profileCard.style.transition = 'all 0.5s ease';
+            profileCard.style.opacity = '1';
+            profileCard.style.transform = 'translateY(0)';
+        }, 100);
+    }
 });
 
 // Add hover effect to social links
@@ -338,15 +369,17 @@ document.body.appendChild(transitionElement);
 document.addEventListener('DOMContentLoaded', () => {
     // Animate the profile card
     const container = document.querySelector('.container');
-    container.style.opacity = '0';
-    container.style.transform = 'translateY(20px)';
-    
-    setTimeout(() => {
-        container.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        container.style.opacity = '1';
-        container.style.transform = 'translateY(0)';
-    }, 100);
-}); 
+    if (container) {
+        container.style.opacity = '0';
+        container.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            container.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            container.style.opacity = '1';
+            container.style.transform = 'translateY(0)';
+        }, 100);
+    }
+});
 
 // More Modal Functionality (separate from Discord modal)
 document.addEventListener('DOMContentLoaded', () => {
@@ -876,4 +909,44 @@ document.addEventListener('DOMContentLoaded', function() {
             backgroundAudio.currentTime = 0;
         }
     });
+});
+
+// Complete fix for the page transition code
+document.addEventListener('DOMContentLoaded', () => {
+    // First, try to find the transition element
+    const transitionElement = document.querySelector('.page-transition');
+    if (!transitionElement) {
+        console.log('Page transition element not found, skipping transition logic');
+        return; // Exit early if the transition element doesn't exist
+    }
+    
+    // Check if we're coming back from the more page
+    if (document.referrer.includes('more/index.html')) {
+        // Get the container
+        const container = document.querySelector('.container');
+        
+        // If there's no container, we can't animate it
+        if (!container) {
+            console.log('Container element not found, skipping animation');
+            return; // Exit early if the container doesn't exist
+        }
+        
+        // Now we know both elements exist, so we can proceed safely
+        transitionElement.classList.add('active');
+        container.style.opacity = '0';
+        container.style.transform = 'translateX(-100px)';
+        
+        // Use a safe timeout that captures variables in closure
+        setTimeout(() => {
+            if (transitionElement && document.body.contains(transitionElement)) {
+                transitionElement.classList.remove('active');
+            }
+            
+            if (container && document.body.contains(container) && container.style) {
+                container.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                container.style.opacity = '1';
+                container.style.transform = 'translateX(0)';
+            }
+        }, 100);
+    }
 });

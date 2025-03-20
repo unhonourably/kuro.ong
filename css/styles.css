@@ -195,6 +195,16 @@ body {
         width: 45px;
         height: 45px;
     }
+    
+    .bio-container {
+        min-height: 38px;
+    }
+    
+    .bio {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
 }
 
 @keyframes progress {
@@ -1053,12 +1063,20 @@ body {
     .bio {
         font-size: 14px;
         line-height: 1.4;
-        white-space: normal;
-        display: -webkit-box;
-        -webkit-line-clamp: 2; /* Limit to 2 lines */
-        -webkit-box-orient: vertical;
+        max-height: 2.8em; /* 2 lines x 1.4 line-height */
         overflow: hidden;
         padding: 0 5px;
+    position: relative;
+    }
+    
+    /* Optional: Add ellipsis at the end */
+    .bio::after {
+        content: "...";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0 5px;
+        background-color: inherit; /* Match the background color */
     }
     
     /* Adjust profile card for better mobile fit */
@@ -1095,6 +1113,7 @@ body {
     .bio {
         font-size: 13px;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
     }
     
     .profile-header h1 {
@@ -1626,5 +1645,33 @@ body.loading {
     .splash-enter {
         font-size: 16px;
         padding: 8px 16px;
+    }
+}
+
+/* Cross-browser solution for multi-line text truncation */
+.bio {
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+    padding: 0 5px;
+    max-height: 2.8em; /* 2 lines × 1.4 line-height */
+    position: relative; /* Add position relative for absolute positioning of ::after */
+}
+
+/* Optional: Create an ellipsis effect for non-supporting browsers */
+@supports not ((-webkit-line-clamp: 2) or (line-clamp: 2)) {
+    .bio::after {
+        content: "...";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 0 5px 0 10px;
+        background: linear-gradient(to right, transparent, #000 50%);
     }
 } 
