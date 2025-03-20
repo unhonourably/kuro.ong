@@ -218,3 +218,52 @@ document.addEventListener('DOMContentLoaded', () => {
         const audioController = new AudioController();
     }, 100);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get audio player elements
+    const audioPlayer = document.getElementById('audio-player');
+    const currentTrackName = document.getElementById('current-track-name');
+    
+    // Prevent layout shifts by setting a fixed height for the track info
+    const trackInfo = document.querySelector('.track-info');
+    if (trackInfo) {
+        // Force a minimum height on the track info container
+        trackInfo.style.minHeight = '20px';
+    }
+    
+    // Prevent text from causing layout shifts when it changes
+    if (currentTrackName) {
+        // If text is too long, truncate it
+        const truncateText = () => {
+            const maxLength = window.innerWidth <= 375 ? 20 : 
+                             window.innerWidth <= 768 ? 30 : 40;
+            
+            if (currentTrackName.textContent.length > maxLength) {
+                currentTrackName.textContent = 
+                    currentTrackName.textContent.substring(0, maxLength) + '...';
+            }
+        };
+        
+        // Call initially and on content change
+        truncateText();
+        
+        // Create a MutationObserver to watch for changes to the track name
+        const observer = new MutationObserver(truncateText);
+        observer.observe(currentTrackName, { 
+            characterData: true, 
+            childList: true, 
+            subtree: true 
+        });
+    }
+    
+    // Make sure player sizing is consistent
+    if (audioPlayer) {
+        // Set fixed dimensions to prevent resizing
+        const container = document.querySelector('.audio-controller');
+        if (container) {
+            // Ensure height doesn't change when track changes
+            const height = container.offsetHeight;
+            container.style.minHeight = `${height}px`;
+        }
+    }
+});
