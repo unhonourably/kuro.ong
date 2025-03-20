@@ -5,40 +5,9 @@ const LASTFM_USERNAME = window.config.LASTFM_USERNAME;
 console.log('API Key:', LASTFM_API_KEY);
 console.log('Username:', LASTFM_USERNAME);
 
-// Bio rotation functionality
-let currentBioIndex = 0;
-const bioElement = document.querySelector('.bio');
+// Bio rotation functionality has been completely removed
 
-function updateBio() {
-    // Add null check to prevent error when bioElement doesn't exist
-    if (!bioElement) {
-        console.log('Bio element not found, skipping bio rotation');
-        return; // Exit the function early if bioElement doesn't exist
-    }
-    
-    // Remove visible class to trigger exit animation
-    bioElement.classList.remove('visible');
-    
-    // Wait for exit animation to complete
-    setTimeout(() => {
-        // Update text
-        bioElement.textContent = bios[currentBioIndex];
-        
-        // Add visible class to trigger enter animation
-        bioElement.classList.add('visible');
-        
-        // Move to next bio
-        currentBioIndex = (currentBioIndex + 1) % bios.length;
-    }, 500); // Match this with CSS transition duration
-}
-
-// Start bio rotation - with null check
-if (bioElement) {
-updateBio();
-setInterval(updateBio, 5000); // Change bio every 5 seconds
-}
-
-// Function to fetch Last.fm now playing - updated with null checks
+// Function to fetch Last.fm now playing
 async function fetchNowPlaying() {
     if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
         console.error('Last.fm credentials not loaded');
@@ -92,17 +61,17 @@ async function fetchNowPlaying() {
             const largeImage = images.find(img => img.size === 'large') || images[images.length - 1];
             const imageUrl = largeImage ? largeImage['#text'] : 'https://placehold.co/50x50';
             
-            // Update the album artwork
+            // Update the album artwork - with null check
             const albumArt = document.getElementById('album-art');
             if (albumArt) {
-            albumArt.src = imageUrl;
+                albumArt.src = imageUrl;
             }
             
             // Update the track info
             const title = track.name;
             const artist = track.artist['#text'];
             
-            // Update text content with null checks
+            // Update text content - with null checks
             const trackTitleElement = document.querySelector('.track-name') || document.getElementById('track-link-text');
             const artistElement = document.querySelector('.artist-name') || document.getElementById('artist-link');
             
@@ -114,7 +83,7 @@ async function fetchNowPlaying() {
                 artistElement.textContent = artist;
             }
 
-            // Update links with null checks
+            // Update links - with null checks
             const trackUrl = `https://www.last.fm/music/${encodeURIComponent(artist)}/_/${encodeURIComponent(title)}`;
             const artistUrl = `https://www.last.fm/music/${encodeURIComponent(artist)}`;
             
