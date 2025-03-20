@@ -5,66 +5,13 @@ const LASTFM_USERNAME = window.config.LASTFM_USERNAME;
 console.log('API Key:', LASTFM_API_KEY);
 console.log('Username:', LASTFM_USERNAME);
 
-// Bio rotation functionality
-const bios = window.config.BIOS || [
-    "Software Engineer & Designer",
-    "Building digital experiences",
-    "Creating elegant solutions",
-    "Making the web beautiful"
-];
+// Remove bio rotation functionality since we're not using it anymore
+// const bioElement = document.querySelector('.bio');
+// function updateBio() {...}
+// updateBio();
+// setInterval(updateBio, 5000);
 
-let currentBioIndex = 0;
-const bioElement = document.querySelector('.bio');
-
-function updateBio() {
-    // Remove visible class to trigger exit animation
-    bioElement.classList.remove('visible');
-    
-    // Wait for exit animation to complete
-    setTimeout(() => {
-        // Update text
-        bioElement.textContent = bios[currentBioIndex];
-        
-        // On mobile, truncate text if needed
-        if (window.innerWidth <= 768) {
-            const maxLength = window.innerWidth <= 375 ? 45 : 60;
-            if (bioElement.textContent.length > maxLength) {
-                bioElement.textContent = bioElement.textContent.substring(0, maxLength) + '...';
-            }
-        }
-        
-        // Add visible class to trigger enter animation
-        bioElement.classList.add('visible');
-        
-        // Move to next bio
-        currentBioIndex = (currentBioIndex + 1) % bios.length;
-    }, 500); // Match this with CSS transition duration
-}
-
-// Start bio rotation
-updateBio();
-setInterval(updateBio, 5000); // Change bio every 5 seconds
-
-// Add a resize handler to adjust bio text when screen size changes
-window.addEventListener('resize', () => {
-    // Update the current bio if it's displayed
-    if (bioElement.textContent) {
-        const currentText = bios[currentBioIndex > 0 ? currentBioIndex - 1 : bios.length - 1];
-        
-        if (window.innerWidth <= 768) {
-            const maxLength = window.innerWidth <= 375 ? 45 : 60;
-            if (currentText.length > maxLength) {
-                bioElement.textContent = currentText.substring(0, maxLength) + '...';
-            } else {
-                bioElement.textContent = currentText;
-            }
-        } else {
-            bioElement.textContent = currentText;
-        }
-    }
-});
-
-// Function to fetch Last.fm now playing
+// Function to fetch Last.fm now playing - updated with null checks
 async function fetchNowPlaying() {
     if (!LASTFM_API_KEY || !LASTFM_USERNAME) {
         console.error('Last.fm credentials not loaded');
@@ -120,23 +67,45 @@ async function fetchNowPlaying() {
             
             // Update the album artwork
             const albumArt = document.getElementById('album-art');
+            if (albumArt) {
             albumArt.src = imageUrl;
+            }
             
             // Update the track info
             const title = track.name;
             const artist = track.artist['#text'];
             
-            // Update text content
-            document.querySelector('.now-playing-title').textContent = title;
-            document.querySelector('.now-playing-artist').textContent = artist;
+            // Update text content with null checks
+            const trackTitleElement = document.querySelector('.track-name') || document.getElementById('track-link-text');
+            const artistElement = document.querySelector('.artist-name') || document.getElementById('artist-link');
+            
+            if (trackTitleElement) {
+                trackTitleElement.textContent = title;
+            }
+            
+            if (artistElement) {
+                artistElement.textContent = artist;
+            }
 
-            // Update links
+            // Update links with null checks
             const trackUrl = `https://www.last.fm/music/${encodeURIComponent(artist)}/_/${encodeURIComponent(title)}`;
             const artistUrl = `https://www.last.fm/music/${encodeURIComponent(artist)}`;
             
-            document.getElementById('track-link').href = trackUrl;
-            document.getElementById('track-link-text').href = trackUrl;
-            document.getElementById('artist-link').href = artistUrl;
+            const trackLinkElement = document.getElementById('track-link');
+            const trackTextLinkElement = document.getElementById('track-link-text');
+            const artistLinkElement = document.getElementById('artist-link');
+            
+            if (trackLinkElement) {
+                trackLinkElement.href = trackUrl;
+            }
+            
+            if (trackTextLinkElement) {
+                trackTextLinkElement.href = trackUrl;
+            }
+            
+            if (artistLinkElement) {
+                artistLinkElement.href = artistUrl;
+            }
             
             console.log('Updated display with:', { title, artist, imageUrl });
         } else {
@@ -147,8 +116,18 @@ async function fetchNowPlaying() {
         if (error.name === 'AbortError') {
             console.log('Request timed out');
         }
-        document.querySelector('.now-playing-title').textContent = 'Error loading Last.fm data';
-        document.querySelector('.now-playing-artist').textContent = 'Last.fm';
+        
+        // Handle error with null checks
+        const trackTitleElement = document.querySelector('.track-name') || document.getElementById('track-link-text');
+        const artistElement = document.querySelector('.artist-name') || document.getElementById('artist-link');
+        
+        if (trackTitleElement) {
+            trackTitleElement.textContent = 'Error loading Last.fm data';
+        }
+        
+        if (artistElement) {
+            artistElement.textContent = 'Last.fm';
+        }
     }
 }
 
@@ -726,4 +705,175 @@ document.addEventListener('DOMContentLoaded', () => {
             firstSection.style.marginTop = '0';
         }
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const splashScreen = document.getElementById('splash-screen');
+    const mainContent = document.getElementById('main-content');
+    const backgroundAudio = document.getElementById('background-audio');
+    const audioControls = document.getElementById('audio-controls');
+    const audioToggle = document.getElementById('audio-toggle');
+    const volumeSlider = document.getElementById('volume-slider');
+    const body = document.body;
+    
+    // Initially hide the audio controls
+    if (audioControls) {
+        audioControls.style.opacity = '0';
+        audioControls.style.visibility = 'hidden';
+    }
+    
+    // Function to enter the site
+    function enterSite() {
+        // Play audio
+        backgroundAudio.play().then(() => {
+            // Update audio button icon
+            if (audioToggle) {
+                audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                audioToggle.classList.add('playing');
+            }
+        }).catch(error => {
+            console.log('Audio autoplay prevented:', error);
+            // Update audio button icon to reflect paused state
+            if (audioToggle) {
+                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                audioToggle.classList.remove('playing');
+            }
+        });
+        
+        // Set initial volume
+        if (backgroundAudio && volumeSlider) {
+            backgroundAudio.volume = volumeSlider.value / 100;
+        }
+        
+        // Fade out splash screen
+        splashScreen.style.opacity = '0';
+        
+        // After splash fades out, show main content
+        setTimeout(() => {
+            // Hide splash completely
+            splashScreen.style.display = 'none';
+            
+            // Show main content
+            mainContent.style.visibility = 'visible';
+            mainContent.style.opacity = '1';
+            
+            // Show audio controls
+            if (audioControls) {
+                audioControls.style.visibility = 'visible';
+                setTimeout(() => {
+                    audioControls.style.opacity = '1';
+                }, 500); // Slight delay for a staggered entrance
+            }
+            
+            // Remove loading class from body
+            body.classList.remove('loading');
+            
+            // Initialize any animations or effects for the main site
+            initializeMainSite();
+        }, 1000); // Match this with the CSS transition duration
+    }
+    
+    // Set up audio controls
+    function setupAudioControls() {
+        if (!audioToggle || !volumeSlider) return;
+        
+        // Toggle audio on button click
+        audioToggle.addEventListener('click', function() {
+            if (backgroundAudio.paused) {
+                backgroundAudio.play().then(() => {
+                    audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    audioToggle.classList.add('playing');
+                });
+            } else {
+                backgroundAudio.pause();
+                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                audioToggle.classList.remove('playing');
+            }
+        });
+        
+        // Update volume
+        volumeSlider.addEventListener('input', function() {
+            const newVolume = this.value / 100;
+            backgroundAudio.volume = newVolume;
+            
+            // Update icon based on volume level
+            if (newVolume === 0) {
+                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else if (newVolume < 0.5) {
+                audioToggle.innerHTML = '<i class="fas fa-volume-down"></i>';
+            } else {
+                audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }
+            
+            // Update slider background to reflect volume level
+            updateVolumeSliderBackground(newVolume * 100);
+        });
+    }
+    
+    // Helper function to update the volume slider's background
+    function updateVolumeSliderBackground(value) {
+        if (!volumeSlider) return;
+        
+        volumeSlider.style.background = `linear-gradient(to right, 
+            rgba(255, 255, 255, 0.7) 0%, 
+            rgba(255, 255, 255, 0.7) ${value}%, 
+            rgba(255, 255, 255, 0.2) ${value}%, 
+            rgba(255, 255, 255, 0.2) 100%)`;
+    }
+    
+    // Add click event to splash screen
+    splashScreen.addEventListener('click', enterSite);
+    
+    // Also allow keyboard entry
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && body.classList.contains('loading')) {
+            enterSite();
+        }
+    });
+    
+    // Initialize the main site animations and effects
+    function initializeMainSite() {
+        // Any code that should run when the main site first displays
+        console.log('Main site initialized');
+        
+        // Set up audio controls
+        setupAudioControls();
+        
+        // Initialize volume slider background
+        if (volumeSlider) {
+            updateVolumeSliderBackground(volumeSlider.value);
+        }
+        
+        // Stagger in the elements for a nice entrance
+        const elementsToAnimate = [
+            document.querySelector('.name-glow'),
+            document.querySelector('.social-bar'),
+            document.querySelector('.music-widget')
+        ];
+        
+        elementsToAnimate.forEach((element, index) => {
+            if (element) {
+                setTimeout(() => {
+                    element.classList.add('animate-in');
+                }, index * 200);
+            }
+        });
+        
+        // Initialize Last.fm now playing if it exists
+        if (typeof fetchNowPlaying === 'function') {
+            setTimeout(() => {
+                fetchNowPlaying();
+                // Set up periodic updates
+                setInterval(fetchNowPlaying, 30000);
+            }, 1000); // Slight delay to ensure everything else is loaded
+        }
+    }
+    
+    // Handle window beforeunload to clear audio
+    window.addEventListener('beforeunload', function() {
+        if (backgroundAudio) {
+            backgroundAudio.pause();
+            backgroundAudio.currentTime = 0;
+        }
+    });
 });
