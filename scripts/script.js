@@ -283,6 +283,8 @@ async function createServerCard(server) {
 
 async function populateServers() {
     discordServers.innerHTML = '';
+    
+    // Remove the header code and just populate the servers
     for (const server of servers) {
         const card = await createServerCard(server);
         discordServers.appendChild(card);
@@ -326,36 +328,375 @@ const transitionElement = document.createElement('div');
 transitionElement.className = 'page-transition';
 document.body.appendChild(transitionElement);
 
-// Handle more info link click
-document.getElementById('more-info').addEventListener('click', (e) => {
-    e.preventDefault();
-    const container = document.querySelector('.container');
-    
-    // Start the transition
-    container.classList.add('fade-out');
-    setTimeout(() => {
-        transitionElement.classList.add('active');
-    }, 300);
-    
-    // Navigate after transition
-    setTimeout(() => {
-        window.location.href = e.currentTarget.href;
-    }, 800);
-});
-
-// Check if we're coming back from the more page
-if (document.referrer.includes('more/index.html')) {
-    // Add initial state classes
-    transitionElement.classList.add('active');
+// Add animation effects for initial load
+document.addEventListener('DOMContentLoaded', () => {
+    // Animate the profile card
     const container = document.querySelector('.container');
     container.style.opacity = '0';
-    container.style.transform = 'translateX(-100px)';
+    container.style.transform = 'translateY(20px)';
     
-    // Remove transition after a brief delay
     setTimeout(() => {
-        transitionElement.classList.remove('active');
         container.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
         container.style.opacity = '1';
-        container.style.transform = 'translateX(0)';
+        container.style.transform = 'translateY(0)';
     }, 100);
-} 
+}); 
+
+// More Modal Functionality (separate from Discord modal)
+document.addEventListener('DOMContentLoaded', () => {
+    // Get modal elements
+    const moreModal = document.getElementById('more-modal');
+    const moreButton = document.getElementById('more-info');
+    
+    console.log('Modal elements:', { moreModal, moreButton });
+    
+    if (moreButton && moreModal) {
+        // Function to open more modal
+        function openMoreModal(e) {
+            if (e) {
+                e.preventDefault();
+            }
+            
+            const moreModal = document.getElementById('more-modal');
+            moreModal.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+            moreModal.style.visibility = 'visible';
+            moreModal.style.display = 'flex';
+            moreModal.style.opacity = '0';
+            
+            // Set up smooth transitions
+            moreModal.style.transition = 'opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1)';
+            
+            const modalContent = moreModal.querySelector('.modal-content');
+            if (modalContent) {
+                // Start from a smaller, lower position
+                modalContent.style.transform = 'translateY(40px) scale(0.95)';
+                modalContent.style.opacity = '0';
+                modalContent.style.backgroundColor = 'rgba(15, 15, 15, 0.6)';
+                modalContent.style.backdropFilter = 'blur(8px)';
+                
+                // Set up smooth transition
+                modalContent.style.transition = 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1)';
+                modalContent.style.willChange = 'transform, opacity';
+            }
+            
+            // Force a reflow to ensure transitions work
+            void moreModal.offsetWidth;
+            
+            // Fade in the background
+            moreModal.style.opacity = '1';
+            
+            // Animate in the content with a slight delay
+            setTimeout(() => {
+                if (modalContent) {
+                    modalContent.style.transform = 'translateY(0) scale(1)';
+                    modalContent.style.opacity = '1';
+                }
+            }, 50);
+            
+            // Add staggered loading animation for bot cards
+            const botCards = moreModal.querySelectorAll('.bot-card');
+            botCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(15px)';
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                // Stagger the animations
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 75)); // 75ms stagger between each card
+            });
+            
+            // Similar animation for collab cards
+            const collabCards = moreModal.querySelectorAll('.collab-card');
+            collabCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(15px)';
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 50)); // Faster 50ms stagger since there are more collab cards
+            });
+        }
+        
+        // Add click listener
+        moreButton.addEventListener('click', openMoreModal);
+        console.log('Added click listener to more button');
+        
+        // Improve the more modal closing animation
+        function closeMoreModal() {
+            // Get the modal and its content
+            const moreModal = document.getElementById('more-modal');
+            const modalContent = moreModal.querySelector('.modal-content');
+            
+            // Add a smoother transition for the fade out
+            moreModal.style.transition = 'opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1)';
+            
+            if (modalContent) {
+                // Use a smoother easing function for the content animation
+                modalContent.style.transition = 'transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1)';
+                modalContent.style.transform = 'translateY(-20px) scale(0.98)';
+                modalContent.style.opacity = '0';
+            }
+            
+            // Fade out the modal background with a slight delay
+            setTimeout(() => {
+                moreModal.style.opacity = '0';
+            }, 50);
+            
+            // Hide the modal after the animation completes
+            setTimeout(() => {
+                moreModal.style.display = 'none';
+                moreModal.style.visibility = 'hidden';
+                
+                // Reset transform for next opening
+                if (modalContent) {
+                    modalContent.style.transform = 'translateY(-40px) scale(0.95)';
+                }
+            }, 450); // Slightly longer duration to ensure animation completes
+        }
+        
+        // Find and update all close button handlers for the more modal
+        const moreModal = document.getElementById('more-modal');
+        if (moreModal) {
+            // Update close button handler
+            const closeButtons = moreModal.querySelectorAll('.close-modal');
+            closeButtons.forEach(button => {
+                // Remove old handlers
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+                
+                // Add new smooth closing handler
+                newButton.addEventListener('click', closeMoreModal);
+            });
+            
+            // Update click outside handler
+            moreModal.addEventListener('click', (e) => {
+                if (e.target === moreModal) {
+                    closeMoreModal();
+                }
+            });
+            
+            // Update Escape key handler
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && 
+                    (moreModal.style.display === 'flex' || 
+                    getComputedStyle(moreModal).display === 'flex')) {
+                    closeMoreModal();
+                }
+            });
+        }
+    } else {
+        console.error('Could not find more modal elements');
+    }
+});
+
+// Fix for Discord modal - restore original functionality but keep transparency
+
+document.addEventListener('DOMContentLoaded', () => {
+    const discordModal = document.getElementById('discord-modal');
+    const discordTrigger = document.getElementById('discord-trigger');
+    const closeButtons = document.querySelectorAll('.close-modal');
+    
+    // Apply transparency without changing functionality
+    if (discordModal) {
+        // Override styles without changing event handlers
+        const applyTransparency = () => {
+            // Apply transparency to modal
+            discordModal.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+            
+            // Apply transparency to content
+            const modalContent = discordModal.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.style.backgroundColor = 'rgba(15, 15, 15, 0.6)';
+                modalContent.style.backdropFilter = 'blur(8px)';
+            }
+        };
+        
+        // Use MutationObserver to detect when modal becomes visible
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class' || 
+                    mutation.attributeName === 'style') {
+                    // Check if modal is visible
+                    const isVisible = 
+                        (discordModal.classList.contains('active')) ||
+                        (window.getComputedStyle(discordModal).display !== 'none');
+                    
+                    if (isVisible) {
+                        applyTransparency();
+                    }
+                }
+            });
+        });
+        
+        // Start observing
+        observer.observe(discordModal, { attributes: true });
+        
+        // Also run once on page load
+        applyTransparency();
+    }
+    
+    // Ensure only one click handler for the discord trigger
+    if (discordTrigger) {
+        // Remove all existing click handlers
+        const newTrigger = discordTrigger.cloneNode(true);
+        discordTrigger.parentNode.replaceChild(newTrigger, discordTrigger);
+        
+        // Add back the original handler
+        newTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Use the original openModal function - don't try to reimplement it
+            openModal();
+            
+            // Apply transparency after a short delay
+            setTimeout(applyTransparency, 10);
+        });
+    }
+    
+    // Fix close buttons
+    closeButtons.forEach(button => {
+        // Remove existing handlers
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+        
+        // Add back the handler
+        newButton.addEventListener('click', () => {
+            // Find the parent modal
+            const modal = newButton.closest('.modal');
+            
+            if (modal.id === 'discord-modal') {
+                // Use the original close function for discord modal
+                closeModalHandler();
+            } else if (modal.id === 'more-modal') {
+                // Close the more modal
+                modal.style.opacity = '0';
+                modal.style.visibility = 'hidden';
+                const modalContent = modal.querySelector('.modal-content');
+                if (modalContent) {
+                    modalContent.style.transform = 'translateY(-20px)';
+                }
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+        });
+    });
+});
+
+// Add this new function to make the Discord modal transparent too
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the Discord modal and update its style to be truly transparent
+    const discordModal = document.getElementById('discord-modal');
+    
+    if (discordModal) {
+        // Force the modal to be transparent
+        discordModal.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        
+        // Apply transparency to the modal content
+        const modalContent = discordModal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.style.backgroundColor = 'rgba(18, 18, 18, 0.7)';
+            modalContent.style.backdropFilter = 'blur(5px)';
+            modalContent.style.webkitBackdropFilter = 'blur(5px)';
+            modalContent.style.backgroundImage = 'none';
+            modalContent.style.boxShadow = '0 15px 25px rgba(0, 0, 0, 0.4)';
+            modalContent.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+        }
+        
+        // Also apply transparency to all server cards within the Discord modal
+        const serverCards = discordModal.querySelectorAll('.discord-server');
+        serverCards.forEach(card => {
+            card.style.backgroundColor = 'rgba(30, 30, 30, 0.7)';
+        });
+    }
+});
+
+// At the start of your DOMContentLoaded event, add this to remove any inline styles
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all modals
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        // Force transparency by removing inline styles that might override it
+        modal.removeAttribute('style');
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        
+        // Make sure modal content is transparent too
+        const content = modal.querySelector('.modal-content');
+        if (content) {
+            content.removeAttribute('style');
+            content.style.backgroundColor = 'rgba(18, 18, 18, 0.7)';
+            content.style.backdropFilter = 'blur(5px)';
+        }
+    });
+    
+    // Rest of your initialization code...
+});
+
+// Add this at the top of your script to ensure it runs as soon as possible
+window.addEventListener('load', () => {
+    // Create a style element and inject it into the head
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Override modal styles with important flags */
+        .modal {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+        }
+        
+        .modal .modal-content {
+            background-color: rgba(15, 15, 15, 0.6) !important;
+            background: rgba(15, 15, 15, 0.6) !important;
+            backdrop-filter: blur(8px) !important;
+        }
+        
+        .modal .bot-card,
+        .modal .collab-card,
+        .modal .discord-server {
+            background-color: rgba(25, 25, 25, 0.6) !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Also directly apply inline styles to ensure they take effect
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        // Force style directly
+        modal.setAttribute('style', 'background-color: rgba(0, 0, 0, 0.6) !important');
+        
+        const content = modal.querySelector('.modal-content');
+        if (content) {
+            content.setAttribute('style', 'background-color: rgba(15, 15, 15, 0.6) !important; backdrop-filter: blur(8px) !important');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Change the question mark icon to a book icon
+    const moreInfoIcon = document.querySelector('#more-info i');
+    if (moreInfoIcon) {
+        // Remove the question mark icon class
+        moreInfoIcon.classList.remove('fa-question');
+        // Add the book icon class
+        moreInfoIcon.classList.add('fa-book');
+    }
+    
+    // Remove the "More Information" title from the modal
+    const moreModal = document.getElementById('more-modal');
+    if (moreModal) {
+        const moreTitle = moreModal.querySelector('.more-content h1');
+        if (moreTitle) {
+            moreTitle.style.display = 'none'; // Hide the title
+            // Or remove it completely:
+            // moreTitle.remove();
+        }
+        
+        // Adjust spacing since we removed the title
+        const firstSection = moreModal.querySelector('.info-section');
+        if (firstSection) {
+            firstSection.style.marginTop = '0';
+        }
+    }
+});
