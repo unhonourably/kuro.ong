@@ -25,6 +25,14 @@ function updateBio() {
         // Update text
         bioElement.textContent = bios[currentBioIndex];
         
+        // On mobile, truncate text if needed
+        if (window.innerWidth <= 768) {
+            const maxLength = window.innerWidth <= 375 ? 45 : 60;
+            if (bioElement.textContent.length > maxLength) {
+                bioElement.textContent = bioElement.textContent.substring(0, maxLength) + '...';
+            }
+        }
+        
         // Add visible class to trigger enter animation
         bioElement.classList.add('visible');
         
@@ -36,6 +44,25 @@ function updateBio() {
 // Start bio rotation
 updateBio();
 setInterval(updateBio, 5000); // Change bio every 5 seconds
+
+// Add a resize handler to adjust bio text when screen size changes
+window.addEventListener('resize', () => {
+    // Update the current bio if it's displayed
+    if (bioElement.textContent) {
+        const currentText = bios[currentBioIndex > 0 ? currentBioIndex - 1 : bios.length - 1];
+        
+        if (window.innerWidth <= 768) {
+            const maxLength = window.innerWidth <= 375 ? 45 : 60;
+            if (currentText.length > maxLength) {
+                bioElement.textContent = currentText.substring(0, maxLength) + '...';
+            } else {
+                bioElement.textContent = currentText;
+            }
+        } else {
+            bioElement.textContent = currentText;
+        }
+    }
+});
 
 // Function to fetch Last.fm now playing
 async function fetchNowPlaying() {
