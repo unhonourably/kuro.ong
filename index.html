@@ -7,10 +7,8 @@
     <link rel="icon" type="image/png" href="assets/other/moon.png">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Remove audio preload since we're using a single file -->
 </head>
 <body class="loading">
-    <!-- Splash screen overlay -->
     <div id="splash-screen">
         <div class="splash-content">
             <h1 class="splash-title">kuro</h1>
@@ -20,21 +18,16 @@
         </div>
     </div>
     
-    <!-- Background audio -->
     <audio id="background-audio" loop preload="auto">
         <source src="music/wildflower.wav" type="audio/wav">
     </audio>
     
-    <!-- Main content (hidden until splash screen is dismissed) -->
     <div id="main-content" style="opacity: 0; visibility: hidden;">
-        <!-- Your existing content -->
         <div class="page-container">
-            <!-- Minimalist header with glowing name -->
             <header class="main-header">
                 <h1 class="name-glow" title="unhonourably on discord">kuro</h1>
             </header>
             
-            <!-- Social links with subtle hover effects -->
             <div class="social-bar">
                 <a href="https://twitter.com/unhonourably" class="social-icon twitter" target="_blank" aria-label="Twitter">
                     <i class="fab fa-twitter"></i>
@@ -53,30 +46,52 @@
                 </a>
             </div>
             
-            <!-- Music player with hover animation -->
-            <div class="music-widget">
-                <a href="#" class="album-cover" id="track-link" target="_blank">
-                    <img src="https://placehold.co/50x50" alt="Album Art" id="album-art">
-                </a>
-                <div class="track-info">
-                    <a href="#" class="track-name" id="track-link-text" target="_blank">Loading...</a>
-                    <a href="#" class="artist-name" id="artist-link" target="_blank">Last.fm</a>
+            <div class="presence-widget" id="presence-widget" style="display: none;">
+                <div class="presence-avatar">
+                    <img src="https://api.lanyard.rest/730478491513913416.png" alt="Discord Avatar" id="discord-avatar">
+                    <div class="status-indicator" id="status-indicator"></div>
+                </div>
+                <div class="presence-info">
+                    <div class="presence-name">
+                        <span id="discord-username">Loading...</span>
+                        <span class="discord-tag" id="discord-discriminator"></span>
+                    </div>
+                    <div class="presence-status">
+                        <span id="discord-status">Connecting to Discord...</span>
+                    </div>
+                    <div class="presence-activity" id="activity-container">
+                        <span id="activity-details"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spotify-widget" id="spotify-widget">
+                <img id="spotify-album-art" class="spotify-album-art" src="" alt="Album Art">
+                <div class="spotify-details">
+                    <span id="spotify-song" class="spotify-song"></span>
+                    <span id="spotify-artist" class="spotify-artist"></span>
+                    <div class="spotify-progress-bar">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar" id="spotify-progress"></div>
+                        </div>
+                        <div class="progress-times">
+                            <span id="spotify-current-time">0:00</span>
+                            <span id="spotify-end-time">0:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Discord Modal -->
     <div class="modal" id="discord-modal" role="dialog" aria-modal="true" aria-labelledby="discord-title">
         <div class="modal-content">
             <button class="close-modal" aria-label="Close"></button>
             <div class="discord-servers">
-                <!-- Server cards will be added here dynamically -->
             </div>
         </div>
     </div>
 
-    <!-- More Info Modal with class structure matching the Discord modal -->
     <div class="modal" id="more-modal" role="dialog" aria-modal="true" aria-labelledby="more-info-title">
         <div class="modal-content">
             <button class="close-modal" aria-label="Close"></button>
@@ -266,7 +281,6 @@
         </div>
     </div>
 
-    <!-- Add this back to your main content area, right before the closing body tag -->
     <div class="audio-button-container" id="audio-controls" style="opacity: 0;">
         <button id="audio-toggle" class="audio-button">
             <i class="fas fa-volume-up"></i>
@@ -278,72 +292,6 @@
 
     <script src="config/config.js"></script>
     <script src="scripts/script.js"></script>
-    <!-- Remove audioController.js reference -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const splashScreen = document.getElementById('splash-screen');
-            const mainContent = document.getElementById('main-content');
-            const backgroundAudio = document.getElementById('background-audio');
-            const body = document.body;
-            
-            // Function to enter the site
-            function enterSite() {
-                // Play audio
-                backgroundAudio.play().catch(error => {
-                    console.log('Audio autoplay prevented:', error);
-                });
-                
-                // Fade out splash screen
-                splashScreen.style.opacity = '0';
-                
-                // After splash fades out, show main content
-                setTimeout(() => {
-                    // Hide splash completely
-                    splashScreen.style.display = 'none';
-                    
-                    // Show main content
-                    mainContent.style.visibility = 'visible';
-                    mainContent.style.opacity = '1';
-                    
-                    // Remove loading class from body
-                    body.classList.remove('loading');
-                    
-                    // Initialize any animations or effects for the main site
-                    initializeMainSite();
-                }, 1000); // Match this with the CSS transition duration
-            }
-            
-            // Add click event to splash screen
-            splashScreen.addEventListener('click', enterSite);
-            
-            // Also allow keyboard entry
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && body.classList.contains('loading')) {
-                    enterSite();
-                }
-            });
-            
-            // Initialize the main site animations and effects
-            function initializeMainSite() {
-                // Any code that should run when the main site first displays
-                console.log('Main site initialized');
-                
-                // Stagger in the elements for a nice entrance
-                const elementsToAnimate = [
-                    document.querySelector('.name-glow'),
-                    document.querySelector('.social-bar'),
-                    document.querySelector('.music-widget')
-                ];
-                
-                elementsToAnimate.forEach((element, index) => {
-                    if (element) {
-                        setTimeout(() => {
-                            element.classList.add('animate-in');
-                        }, index * 200);
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="scripts/lanyard.js"></script>
 </body>
 </html>
