@@ -8,42 +8,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="loading">
-    <div id="splash-screen">
-        <div class="splash-content">
-            <h1 class="splash-title">kuro</h1>
-            <div class="splash-enter">
-                <span>--></span>
-            </div>
-        </div>
-    </div>
-    
-    <audio id="background-audio" loop preload="auto">
-        <source src="music/wildflower.wav" type="audio/wav">
-    </audio>
-    
-    <div id="main-content" style="opacity: 0; visibility: hidden;">
+<body>
+    <div id="main-content">
         <div class="page-container">
             <header class="main-header">
                 <h1 class="name-glow" title="unhonourably on discord">kuro</h1>
             </header>
             
-            <div class="social-bar">
-                <a href="https://twitter.com/unhonourably" class="social-icon twitter" target="_blank" aria-label="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.instagram.com/kurongl/" class="social-icon instagram" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-icon discord" id="discord-trigger" aria-label="Discord Servers">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="#" class="social-icon more" id="more-info" aria-label="More Information">
-                    <i class="fas fa-book"></i>
-                </a>
-            </div>
-            
-            <div class="presence-widget" id="presence-widget" style="display: none;">
+            <div class="presence-widget" id="presence-widget">
                 <div class="presence-avatar">
                     <img src="https://api.lanyard.rest/730478491513913416.png" alt="Discord Avatar" id="discord-avatar">
                     <div class="status-indicator" id="status-indicator"></div>
@@ -78,241 +50,314 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="modal" id="discord-modal" role="dialog" aria-modal="true" aria-labelledby="discord-title">
-        <div class="modal-content">
-            <button class="close-modal" aria-label="Close"></button>
-            <div class="discord-servers">
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="more-modal" role="dialog" aria-modal="true" aria-labelledby="more-info-title">
-        <div class="modal-content">
-            <button class="close-modal" aria-label="Close"></button>
-            <div class="more-content">
-                <div class="info-section">
-                    <h2>Projects</h2>
-                    <div class="bot-list">
-                        <div class="bot-card">
-                            <span class="role-tag">Owner & Founder</span>
-                            <div class="bot-content">
-                                <div class="bot-image">
-                                    <img src="assets/bots/ztwhite.png" alt="Zero Template" loading="lazy">
-                                </div>
-                                <div class="bot-text">
-                                    <h3><a href="https://zerotemplate.org" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Zero Template</a></h3>
-                                    <p>An amazing service for beautiful Web Application, Discord Bot, and API Development.</p>
-                                </div>
+            <section id="projects-section" class="content-section">
+                <h2>Projects</h2>
+                <div class="bot-list">
+                    <div class="bot-card">
+                        <span class="role-tag">Owner & Founder</span>
+                        <div class="bot-content">
+                            <div class="bot-image">
+                                <img src="assets/bots/ztwhite.png" alt="Zero Template" loading="lazy">
+                            </div>
+                            <div class="bot-text">
+                                <h3><a href="https://zerotemplate.org" target="_blank">Zero Template</a></h3>
+                                <p>An amazing service for beautiful Web Application, Discord Bot, and API Development.</p>
                             </div>
                         </div>
-                        <div class="bot-card">
-                            <span class="role-tag">Owner & Dev</span>
-                            <div class="bot-content">
-                                <div class="bot-image">
-                                    <img src="assets/bots/ticketsmaster.png" alt="Ticketsmaster" loading="lazy">
-                                </div>
-                                <div class="bot-text">
-                                    <h3><a href="https://ticketsmaster.xyz" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Ticketsmaster</a></h3>
-                                    <p>Advanced and Dynamic Ticketing System for Discord.</p>
-                                </div>
+                    </div>
+                    <div class="bot-card">
+                        <span class="role-tag">Owner & Dev</span>
+                        <div class="bot-content">
+                            <div class="bot-image">
+                                <img src="assets/bots/ripped.png" alt="Ripped" loading="lazy">
+                            </div>
+                            <div class="bot-text">
+                                <h3><a href="https://ripped.rocks" target="_blank">Ripped</a></h3>
+                                <p>The best multipurpose bot for Discord. Visit Today.</p>
                             </div>
                         </div>
-                        <div class="bot-card">
-                            <span class="role-tag">Owner & Dev</span>
-                            <div class="bot-content">
-                                <div class="bot-image">
-                                    <img src="assets/bots/monster.png" alt="Monster" loading="lazy">
-                                </div>
-                                <div class="bot-text">
-                                    <h3><a href="https://monsterbot.dev" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Monster</a></h3>
-                                    <p>Multipurpose Discord Bot with Advanced Features.</p>
-                                </div>
+                    </div>
+                    <div class="bot-card">
+                        <span class="role-tag">Former Dev</span>
+                        <div class="bot-content">
+                            <div class="bot-image">
+                                <img src="assets/bots/evict.gif" alt="Evict" loading="lazy">
+                            </div>
+                            <div class="bot-text">
+                                <h3><a href="https://evict.bot" target="_blank">Evict</a></h3>
+                                <p>The only aesthetic, multi-functional Discord bot you need.</p>
                             </div>
                         </div>
-                        <div class="bot-card">
-                            <span class="role-tag">Former Dev</span>
-                            <div class="bot-content">
-                                <div class="bot-image">
-                                    <img src="assets/bots/evict.gif" alt="Evict" loading="lazy">
-                                </div>
-                                <div class="bot-text">
-                                    <h3><a href="https://evict.bot" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Evict</a></h3>
-                                    <p>The only aesthetic, multi-functional Discord bot you need.</p>
-                                </div>
+                    </div>
+                    <div class="bot-card">
+                        <span class="role-tag">Owner & Dev</span>
+                        <div class="bot-content">
+                            <div class="bot-image">
+                                <img src="assets/bots/rebeat.png" alt="ReBeat" loading="lazy">
                             </div>
-                        </div>
-                        <div class="bot-card">
-                            <span class="role-tag">Owner + Dev</span>
-                            <div class="bot-content">
-                                <div class="bot-image">
-                                    <img src="assets/bots/ripped.png" alt="Ripped" loading="lazy">
-                                </div>
-                                <div class="bot-text">
-                                    <h3><a href="https://ripped.rocks" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Ripped</a></h3>
-                                    <p>The best multipurpose bot for Discord. Visit Today.</p>
-                                </div>
+                            <div class="bot-text">
+                                <h3><a href="https://rebeat.org" target="_blank">ReBeat</a></h3>
+                                <p>Revolutionary music platform for creators and listeners.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="info-section">
-                    <h2>Worked With</h2>
-                    <div class="collab-list">
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/packgod.png" alt="Packgod">
+            </section>
+
+            <section id="skills-section" class="content-section">
+                <h2>Skills & Experience</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Development</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span class="skill-name">TypeScript</span>
+                                <span class="skill-level advanced">Advanced</span>
                             </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.youtube.com/@packgod." target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Packgod</a></h3>
-                                <p>Content Creator</p>
+                            <div class="skill-item">
+                                <span class="skill-name">Next.js</span>
+                                <span class="skill-level advanced">Advanced</span>
                             </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/slashest.jpg" alt="Slashest">
+                            <div class="skill-item">
+                                <span class="skill-name">Nest.js</span>
+                                <span class="skill-level intermediate">Intermediate</span>
                             </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.youtube.com/@Slashestt" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Slashest</a></h3>
-                                <p>Content Creator</p>
+                            <div class="skill-item">
+                                <span class="skill-name">PostgreSQL</span>
+                                <span class="skill-level advanced">Advanced</span>
                             </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/twomad.png" alt="Twomad">
+                            <div class="skill-item">
+                                <span class="skill-name">Discord Bot Development</span>
+                                <span class="skill-level advanced">Advanced</span>
                             </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.youtube.com/@threemad" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Twomad</a></h3>
-                                <p>Content Creator</p>
+                            <div class="skill-item">
+                                <span class="skill-name">API Development</span>
+                                <span class="skill-level advanced">Advanced</span>
                             </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/avery.jpeg" alt="Avery">
+                            <div class="skill-item">
+                                <span class="skill-name">Spotify API Integration</span>
+                                <span class="skill-level expert">Expert</span>
                             </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.tiktok.com/@av33ry?lang=en" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Av33ry</a></h3>
-                                <p>Content Creator</p>
+                            <div class="skill-item">
+                                <span class="skill-name">Vercel Deployment</span>
+                                <span class="skill-level advanced">Advanced</span>
                             </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/sammygreen.jpg" alt="SammyGreen">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.youtube.com/@sammygreenbw" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">SammyGreen</a></h3>
-                                <p>Content Creator</p>
+                            <div class="skill-item">
+                                <span class="skill-name">DNS & Domain Management</span>
+                                <span class="skill-level advanced">Advanced</span>
                             </div>
                         </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/mlb.png" alt="MLB">
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Professional Experience</h3>
+                        <div class="experience-items">
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <span class="experience-title">Manager</span>
+                                    <span class="experience-company">Packgod (YouTuber)</span>
+                                    <span class="experience-duration">6 months</span>
+                                </div>
+                                <p>Managed 300k+ member community, developed custom ticketing system, and created Next.js TypeScript website</p>
                             </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.mlb.com" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">MLB</a></h3>
-                                <p>American Sports League</p>
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <span class="experience-title">Web Developer</span>
+                                    <span class="experience-company">Slashest</span>
+                                    <span class="experience-duration">Contract</span>
+                                </div>
+                                <p>Developed Next.js TypeScript website for prominent YouTuber</p>
                             </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/discord.png" alt="Discord">
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <span class="experience-title">Discord Moderator</span>
+                                    <span class="experience-company">Major League Baseball</span>
+                                    <span class="experience-duration">1+ years</span>
+                                </div>
+                                <p>Official partnered Discord server moderator, managing growing community of baseball fans</p>
                             </div>
-                            <div class="collab-info">
-                                <h3><a href="https://discord.com" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Discord</a></h3>
-                                <p>Community Platform</p>
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <span class="experience-title">Social Media Content Creator</span>
+                                    <span class="experience-company">Mars Wrigley</span>
+                                    <span class="experience-duration">2021-2023</span>
+                                </div>
+                                <p>Created content for Skittles, M&Ms, Snickers Twitter accounts, worked with major creators including GeorgeNotFound, CaptainPuffy, iFireMonkey, and Lil Nas X</p>
                             </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/mars.png" alt="Mars Wrigley">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.mars.com/our-brands/mars-snacking" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Mars Wrigley</a></h3>
-                                <p>International Candy Company</p>
-                            </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/twitter.png" alt="Twitter">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://twitter.com" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Twitter</a></h3>
-                                <p>American Social Media Platform</p>
-                            </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/genshin.jpg" alt="Genshin Impact">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://genshin.hoyoverse.com" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Genshin Impact</a></h3>
-                                <p>Video Game</p>
-                            </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/skittles.jpg" alt="Skittles">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.skittles.com" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Skittles</a></h3>
-                                <p>Candy Brand</p>
-                            </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/brenden.jpeg" alt="Brenden">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.tiktok.com/@code_brenden" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">Brenden</a></h3>
-                                <p>Content Creator</p>
-                            </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/ifiremonkey.jpg" alt="iFireMonkey">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://x.com/iFireMonkey" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">iFireMonkey</a></h3>
-                                <p>Content Creator</p>
-                            </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/xtryguy.jpg" alt="XT RyGuy">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.youtube.com/xtryguy?app=desktop" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">XT RyGuy</a></h3>
-                                <p>Content Creator</p>
-                            </div>
-                        </div>
-                        <div class="collab-card">
-                            <div class="collab-avatar">
-                                <img src="assets/associates/theboydilly.jpg" alt="TheBoyDilly">
-                            </div>
-                            <div class="collab-info">
-                                <h3><a href="https://www.youtube.com/channel/UCeaK9vREM27BBA5q6obpYYA" target="_blank" style="color: #ffffff; text-decoration: none; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);">TheBoyDilly</a></h3>
-                                <p>Content Creator</p>
+                            <div class="experience-item">
+                                <div class="experience-header">
+                                    <span class="experience-title">Community Manager</span>
+                                    <span class="experience-company">Columbia Records</span>
+                                    <span class="experience-duration">Contract</span>
+                                </div>
+                                <p>Created and managed Discord servers for Columbia Records signed musicians</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </section>
 
-    <div class="audio-button-container" id="audio-controls" style="opacity: 0;">
-        <button id="audio-toggle" class="audio-button">
-            <i class="fas fa-volume-up"></i>
-        </button>
-        <div class="volume-slider-wrapper">
-            <input type="range" id="volume-slider" min="0" max="100" value="70">
+            <section id="collaborations-section" class="content-section">
+                <h2>Worked With</h2>
+                <div class="collab-list">
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/packgod.png" alt="Packgod">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.youtube.com/@packgod." target="_blank">Packgod</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/slashest.jpg" alt="Slashest">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.youtube.com/@Slashestt" target="_blank">Slashest</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/twomad.png" alt="Twomad">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.youtube.com/@threemad" target="_blank">Twomad</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/avery.jpeg" alt="Avery">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.tiktok.com/@av33ry?lang=en" target="_blank">Av33ry</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/sammygreen.jpg" alt="SammyGreen">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.youtube.com/@sammygreenbw" target="_blank">SammyGreen</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/mlb.png" alt="MLB">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.mlb.com" target="_blank">MLB</a></h3>
+                            <p>American Sports League</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/discord.png" alt="Discord">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://discord.com" target="_blank">Discord</a></h3>
+                            <p>Community Platform</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/mars.png" alt="Mars Wrigley">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.mars.com/our-brands/mars-snacking" target="_blank">Mars Wrigley</a></h3>
+                            <p>International Candy Company</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/twitter.png" alt="Twitter">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://twitter.com" target="_blank">Twitter</a></h3>
+                            <p>American Social Media Platform</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/genshin.jpg" alt="Genshin Impact">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://genshin.hoyoverse.com" target="_blank">Genshin Impact</a></h3>
+                            <p>Video Game</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/skittles.jpg" alt="Skittles">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.skittles.com" target="_blank">Skittles</a></h3>
+                            <p>Candy Brand</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/brenden.jpeg" alt="Brenden">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.tiktok.com/@code_brenden" target="_blank">Brenden</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/ifiremonkey.jpg" alt="iFireMonkey">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://x.com/iFireMonkey" target="_blank">iFireMonkey</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/xtryguy.jpg" alt="XT RyGuy">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.youtube.com/xtryguy?app=desktop" target="_blank">XT RyGuy</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                    <div class="collab-card">
+                        <div class="collab-avatar">
+                            <img src="assets/associates/theboydilly.jpg" alt="TheBoyDilly">
+                        </div>
+                        <div class="collab-info">
+                            <h3><a href="https://www.youtube.com/channel/UCeaK9vREM27BBA5q6obpYYA" target="_blank">TheBoyDilly</a></h3>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact-section" class="content-section">
+                <h2>Contact</h2>
+                <div class="contact-container">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Email</h3>
+                            <a href="mailto:unhonourably@gmail.com" class="contact-link">unhonourably@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 
     <script src="config/config.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="js/main.js"></script>
     <script src="scripts/lanyard.js"></script>
 </body>
 </html>

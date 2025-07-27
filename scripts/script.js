@@ -487,7 +487,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const audioControls = document.getElementById('audio-controls');
     const audioToggle = document.getElementById('audio-toggle');
     const volumeSlider = document.getElementById('volume-slider');
+    const splashEnter = document.querySelector('.splash-enter');
     const body = document.body;
+    
+    // Set initial states
+    if (mainContent) {
+        mainContent.style.visibility = 'hidden';
+        mainContent.style.opacity = '0';
+    }
     
     if (audioControls) {
         audioControls.style.opacity = '0';
@@ -495,32 +502,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function enterSite() {
-        backgroundAudio.play().then(() => {
-            if (audioToggle) {
-                audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-                audioToggle.classList.add('playing');
-            }
-        }).catch(error => {
-            if (audioToggle) {
-                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                audioToggle.classList.remove('playing');
-            }
-        });
+        if (!mainContent || !splashScreen) return;
         
-        if (backgroundAudio && volumeSlider) {
-            backgroundAudio.volume = volumeSlider.value / 100;
+        // Try to play audio
+        if (backgroundAudio) {
+            backgroundAudio.play().then(() => {
+                if (audioToggle) {
+                    audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    audioToggle.classList.add('playing');
+                }
+            }).catch(error => {
+                if (audioToggle) {
+                    audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    audioToggle.classList.remove('playing');
+                }
+            });
+            
+            if (volumeSlider) {
+                backgroundAudio.volume = volumeSlider.value / 100;
+            }
         }
         
+        // Fade out splash screen
         splashScreen.style.opacity = '0';
+        splashScreen.style.transition = 'opacity 1s ease';
         
+        // Show main content
         setTimeout(() => {
             splashScreen.style.display = 'none';
-            
             mainContent.style.visibility = 'visible';
             mainContent.style.opacity = '1';
+            mainContent.style.transition = 'opacity 1s ease';
             
             if (audioControls) {
                 audioControls.style.visibility = 'visible';
+                audioControls.style.transition = 'opacity 0.5s ease';
                 setTimeout(() => {
                     audioControls.style.opacity = '1';
                 }, 500);
@@ -574,7 +590,11 @@ document.addEventListener('DOMContentLoaded', function() {
             rgba(255, 255, 255, 0.2) 100%)`;
     }
     
-    splashScreen.addEventListener('click', enterSite);
+    // Update event listeners
+    if (splashEnter) {
+        splashEnter.addEventListener('click', enterSite);
+        splashEnter.style.cursor = 'pointer';
+    }
     
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && body.classList.contains('loading')) {
