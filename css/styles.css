@@ -11,11 +11,16 @@ html {
 }
 
 body {
+<<<<<<< HEAD
     background: #000000;
+=======
+    background-color: #000;
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
     color: #fff;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
@@ -98,6 +103,106 @@ body::before {
     width: 100%;
     position: relative;
     opacity: 1;
+=======
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.profile-header h1 a {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3);
+}
+
+/* Social links - horizontal row */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.social-link {
+    color: #fff;
+    font-size: 24px;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+}
+
+.social-link:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* Twitter */
+.social-link .fa-twitter {
+    color: #1DA1F2;
+}
+
+/* Instagram */
+.social-link .fa-instagram {
+    color: #E1306C;
+}
+
+/* GitHub */
+.social-link .fa-github {
+    color: #f5f5f5;
+}
+
+/* Discord */
+.social-link .fa-discord {
+    color: #7289DA;
+}
+
+/* More/Book icon */
+.social-link .fa-book {
+    color: #aaaaaa;
+}
+
+/* LastFM now playing - clean style */
+.now-playing {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.album-art {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
 }
 
 .page-container {
@@ -223,10 +328,11 @@ body::before {
 .presence-avatar img {
     width: 100%;
     height: 100%;
+    border-radius: 6px;
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
+<<<<<<< HEAD
 .presence-widget:hover .presence-avatar img {
     transform: scale(1.05);
 }
@@ -267,12 +373,293 @@ body::before {
 .presence-name {
     font-size: 1.5rem;
     font-weight: 700;
+=======
+.album-art .fa-lastfm {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background-color: #d51007;
+    color: white;
+    font-size: 12px;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.now-playing-content {
+    text-align: left;
+    overflow: hidden;
+}
+
+.now-playing-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.now-playing-title, 
+.now-playing-artist {
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.now-playing-title {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.now-playing-artist {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .profile-header h1 {
+        font-size: 32px;
+    }
+    
+    .social-link {
+        font-size: 22px;
+    }
+    
+    .social-links {
+        gap: 16px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 375px) {
+    .profile-header h1 {
+        font-size: 28px;
+    }
+    
+    .social-link {
+        font-size: 20px;
+    }
+    
+    .social-links {
+        gap: 14px;
+    }
+    
+    .now-playing {
+        padding: 6px 12px;
+    }
+    
+    .album-art {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .bio-container {
+        min-height: 38px;
+    }
+    
+    .bio {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+}
+
+@keyframes progress {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .title-bio-wrapper {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 5px;
+    }
+    
+    .profile-header h1 {
+        font-size: 26px;
+    }
+    
+    .static-bio {
+        font-size: 14px;
+    }
+    
+    .bio-container {
+        min-height: 20px;
+    }
+    
+    /* Remove the bullet on mobile when stacked */
+    .bio::before {
+        content: "";
+        margin-right: 0;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.active {
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+    background-color: rgba(18, 18, 18, 0.7) !important;
+    background-image: none !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    position: relative;
+    transform: scale(0.95) translateY(-30px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal.active .modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 2;
+    line-height: 0;
+}
+
+.close-modal::before {
+    content: '×';
+    position: relative;
+    top: -1px;
+}
+
+.close-modal:hover {
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
     color: #fff;
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
+<<<<<<< HEAD
 .presence-status {
+=======
+/* Remove unused modal header and body styles */
+.modal-header, .modal-body {
+    display: none;
+}
+
+/* Adjust Discord servers grid */
+.discord-servers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.discord-server {
+    background-color: rgba(30, 30, 30, 0.7) !important;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.3s ease;
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.discord-server:hover {
+    transform: translateY(-2px) scale(1.02);
+    background-color: rgba(51, 51, 51, 0.85);
+}
+
+.server-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.server-info {
+    flex: 1;
+}
+
+.server-name {
+    color: #fff;
+    margin: 0;
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 0.5rem;
@@ -399,6 +786,7 @@ body::before {
 }
 
 .bot-card {
+<<<<<<< HEAD
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -430,6 +818,38 @@ body::before {
     box-shadow: 0 20px 50px rgba(0,0,0,0.7);
     border-color: rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.03);
+=======
+    background-color: rgba(30, 30, 30, 0.7) !important;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bot-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bot-card i {
+    font-size: 2em;
+    color: #7289DA;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(114, 137, 218, 0.5);
+}
+
+.bot-card h3 {
+    color: #ffffff;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.bot-card p {
+    color: #a0a0a0;
+    font-size: 0.9em;
+    line-height: 1.4;
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
 }
 
 .role-tag {
@@ -505,6 +925,7 @@ body::before {
 }
 
 .collab-card {
+<<<<<<< HEAD
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -538,6 +959,24 @@ body::before {
     box-shadow: 0 15px 40px rgba(0,0,0,0.7);
     border-color: rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.03);
+=======
+    background-color: rgba(30, 30, 30, 0.7) !important;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.collab-card:hover {
+    transform: translateY(-2px);
+    background: rgba(26, 26, 26, 0.7);
+    border-color: rgba(255, 255, 255, 0.2);
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
 }
 
 .collab-avatar {
@@ -588,6 +1027,7 @@ body::before {
     opacity: 0.7;
 }
 
+<<<<<<< HEAD
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -869,11 +1309,870 @@ body::before {
     
     .spotify-song {
         font-size: 1rem;
+=======
+/* Audio button styles */
+.audio-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    transition: all 0.3s ease, visibility 0.3s;
+}
+
+.audio-button {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(20, 20, 20, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glowing effect for the button */
+.audio-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.audio-button:hover {
+    transform: scale(1.05);
+    background-color: rgba(30, 30, 30, 0.8);
+}
+
+.audio-button:hover::after {
+    opacity: 1;
+}
+
+.audio-button i {
+    transition: all 0.2s ease;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Volume slider wrapper with improved styling */
+.volume-slider-wrapper {
+    position: absolute;
+    right: 21px; /* Center with the button */
+    width: 0;
+    height: 42px;
+    opacity: 0;
+    overflow: hidden;
+    background-color: rgba(20, 20, 20, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 42px; /* Space for the button */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none; /* Initially non-interactive */
+}
+
+/* Only show volume slider on hover */
+.audio-button-container:hover .volume-slider-wrapper {
+    width: 140px;
+    opacity: 1;
+    pointer-events: auto; /* Make interactive when visible */
+}
+
+/* Volume slider styling */
+#volume-slider {
+    width: 84px;
+    height: 4px;
+    margin-right: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0.7) 0%, 
+                rgba(255, 255, 255, 0.7) 70%, 
+                rgba(255, 255, 255, 0.2) 70%, 
+                rgba(255, 255, 255, 0.2) 100%);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+/* Pulsing animation for playing state */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); }
+    70% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.audio-button.playing {
+    animation: pulse 2s infinite;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .audio-button-container {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .audio-button {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .volume-slider-wrapper {
+        height: 38px;
+        right: 19px;
+        padding-left: 38px;
+        border-radius: 19px;
+    }
+    
+    .audio-button-container:hover .volume-slider-wrapper {
+        width: 120px;
+    }
+    
+    #volume-slider {
+        width: 70px;
+        margin-right: 12px;
+    }
+}
+
+/* Helper tooltip */
+.bg-audio-controls::after {
+    content: 'Double-click/long-press for volume';
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.bg-audio-controls:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modal styling improvements */
+.modal .modal-content {
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    padding: 25px;
+    position: relative;
+    padding-top: 40px;
+    
+    /* Custom scrollbar - Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #444 #1e1e1e;
+}
+
+/* Custom scrollbar - Webkit browsers */
+.modal .modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal .modal-content::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 4px;
+}
+
+.modal .modal-content::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+    border: 2px solid #1e1e1e;
+}
+
+.modal .modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* Adjust spacing for the more modal without title */
+.modal .more-content {
+    padding-top: 5px;
+}
+
+.modal .info-section:first-of-type {
+    margin-top: 0;
+}
+
+.modal .info-section:first-of-type h2 {
+    margin-top: 0;
+}
+
+/* Style the book icon */
+#more-info .fa-book {
+    font-size: 1.1em;
+}
+
+/* Discord modal header styling */
+.discord-modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.discord-modal-header h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(114, 137, 218, 0.5);
+}
+
+.discord-modal-header p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0;
+}
+
+@keyframes fadeIn {
+    from {
+    opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Make sure the Discord cards have proper spacing with the new header */
+.discord-servers {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Discord credit glowy text */
+.discord-credit {
+    text-align: center;
+    font-size: 14px;
+    margin: -10px 0 20px 0;
+    color: #7289da;
+    text-shadow: 
+        0 0 5px rgba(114, 137, 218, 0.5),
+        0 0 10px rgba(114, 137, 218, 0.3);
+    letter-spacing: 1px;
+    font-style: italic;
+    animation: glow 1.5s ease-in-out infinite alternate;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.discord-credit:hover {
+    opacity: 1;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            0 0 5px rgba(114, 137, 218, 0.5),
+            0 0 10px rgba(114, 137, 218, 0.3);
+    }
+    to {
+        text-shadow: 
+            0 0 10px rgba(114, 137, 218, 0.7),
+            0 0 15px rgba(114, 137, 218, 0.5),
+            0 0 20px rgba(114, 137, 218, 0.3);
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .profile-card {
+    width: 90%;
+        padding: 15px;
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .social-link {
+        margin: 8px;
+        font-size: 1.5em;
+    }
+    
+    .now-playing {
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    /* Modal adjustments for mobile */
+    .modal .modal-content {
+        width: 90%;
+        max-height: 80vh;
+        padding: 15px;
+}
+
+.close-modal {
+        top: 10px;
+        right: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+    /* Make bot cards stack properly on mobile */
+    .bot-content {
+        flex-direction: column;
+    }
+    
+    .bot-image {
+        margin-bottom: 10px;
+    }
+    
+    /* Audio controller adjustments */
+    .audio-controller {
+        padding: 8px 5px;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .audio-controls {
+        display: grid;
+        grid-template-areas:
+            "prev play next mute volume"
+            "info info info info info";
+        grid-template-columns: auto auto auto auto 1fr;
+        grid-gap: 5px;
+        align-items: center;
+    }
+    
+    #prev-track { grid-area: prev; }
+    #play-pause { grid-area: play; }
+    #next-track { grid-area: next; }
+    #mute { grid-area: mute; }
+    .volume-slider-container { grid-area: volume; }
+    .track-info { 
+        grid-area: info; 
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+    }
+    
+    .control-btn {
+        padding: 6px;
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .volume-slider-container {
+        width: 50px;
+        margin-left: 5px;
+    }
+    
+    #volume-slider {
+        width: 100%;
+    }
+    
+    /* Fix bio text */
+    .bio-container {
+        min-height: 42px; /* Allow two lines on mobile */
+    }
+    
+    .bio {
+        font-size: 14px;
+        line-height: 1.4;
+        max-height: 2.8em; /* 2 lines x 1.4 line-height */
+        overflow: hidden;
+        padding: 0 5px;
+    position: relative;
+    }
+    
+    /* Optional: Add ellipsis at the end */
+    .bio::after {
+        content: "...";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0 5px;
+        background-color: inherit; /* Match the background color */
+    }
+    
+    /* Adjust profile card for better mobile fit */
+    .profile-card {
+        width: 95%;
+        padding: 12px;
+        margin: 10px auto;
+    }
+    
+    .profile-header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+}
+
+/* Extra small devices (phones, 375px and down) */
+@media (max-width: 375px) {
+    .audio-controls {
+        grid-template-areas:
+            "prev play next"
+            "mute volume info";
+        grid-template-columns: auto auto 1fr;
+    }
+    
+    .control-btn {
+        padding: 5px;
+        font-size: 12px;
+    }
+    
+    .bio-container {
+        min-height: 38px;
+    }
+    
+    .bio {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+    
+    .profile-header h1 {
+        font-size: 22px;
+    }
+    
+    .static-bio {
+        font-size: 13px;
+    }
+}
+
+/* Fix for iOS Safari specific issues */
+@supports (-webkit-touch-callout: none) {
+    .modal {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    input[type="range"] {
+        height: 24px;
+    }
+}
+
+/* Bot list and collab list styling (moved from inline) */
+.bot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.collab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Modern, clean layout with no card */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 0 20px;
+    gap: 25px;
+}
+
+/* Header with glowing name */
+.main-header {
+    margin-bottom: 5px;
+}
+
+/* Enhanced animated glow effect for the title */
+.name-glow {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+/* Multiple layered text shadows for depth */
+.name-glow {
+    text-shadow: 
+        0 0 1px rgba(255, 255, 255, 0.8),
+        0 0 5px rgba(255, 255, 255, 0.6),
+        0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 15px rgba(255, 255, 255, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.1);
+    animation: glow-pulse 4s infinite alternate-reverse ease-in-out;
+}
+
+/* Main glow pulsing animation */
+@keyframes glow-pulse {
+    0% {
+        text-shadow: 
+            0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 5px rgba(255, 255, 255, 0.6),
+            0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 15px rgba(255, 255, 255, 0.2),
+            0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        text-shadow: 
+            0 0 2px rgba(255, 255, 255, 0.9),
+            0 0 10px rgba(255, 255, 255, 0.7),
+            0 0 15px rgba(255, 255, 255, 0.5),
+            0 0 25px rgba(255, 255, 255, 0.3),
+            0 0 35px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        text-shadow: 
+            0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 5px rgba(255, 255, 255, 0.6),
+            0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 15px rgba(255, 255, 255, 0.2),
+            0 0 20px rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Add a pseudo-element for additional glow effect */
+.name-glow::before {
+    content: attr(data-hover);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+    filter: blur(4px);
+    color: #fff;
+    z-index: -1;
+    animation: glow-drift 8s infinite ease-in-out;
+}
+
+/* Subtle drifting animation for the glow */
+@keyframes glow-drift {
+    0% {
+        transform: translateX(-2px) translateY(1px);
+        opacity: 0.5;
+        filter: blur(4px);
+    }
+    25% {
+        transform: translateX(0px) translateY(-1px);
+        opacity: 0.7;
+        filter: blur(5px);
+    }
+    50% {
+        transform: translateX(2px) translateY(1px);
+        opacity: 0.6;
+        filter: blur(6px);
+    }
+    75% {
+        transform: translateX(0px) translateY(2px);
+        opacity: 0.7;
+        filter: blur(5px);
+    }
+    100% {
+        transform: translateX(-2px) translateY(1px);
+        opacity: 0.5;
+        filter: blur(4px);
+    }
+}
+
+/* Add an additional pseudo-element for a color shimmer effect */
+.name-glow::after {
+    content: attr(data-hover);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: -2;
+    filter: blur(15px);
+    animation: color-shift 10s infinite linear;
+}
+
+/* Subtle color shift animation */
+@keyframes color-shift {
+    0%, 100% {
+        color: rgba(255, 255, 255, 0.8);
+        opacity: 0.1;
+        transform: translateX(-3px) translateY(-1px);
+    }
+    25% {
+        color: rgba(220, 240, 255, 0.8); /* Slight blue tint */
+        opacity: 0.2;
+        transform: translateX(1px) translateY(-2px);
+    }
+    50% {
+        color: rgba(255, 240, 230, 0.8); /* Slight warm tint */
+        opacity: 0.25;
+        transform: translateX(3px) translateY(1px);
+    }
+    75% {
+        color: rgba(240, 250, 255, 0.8); /* Slight cool tint */
+        opacity: 0.15;
+        transform: translateX(0px) translateY(3px);
+    }
+}
+
+/* Add hover effect for extra interactivity */
+.name-glow:hover {
+    animation-play-state: paused;
+}
+
+.name-glow:hover::before, 
+.name-glow:hover::after {
+    animation-play-state: paused;
+    opacity: 0.9;
+    filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+/* Social bar with animated icons */
+.social-bar {
+    display: flex;
+    gap: 30px;
+    margin: 10px 0;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 26px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+/* Icon-specific glow colors */
+.twitter {
+    color: #1DA1F2;
+    text-shadow: 0 0 10px rgba(29, 161, 242, 0);
+}
+
+.instagram {
+    color: #E1306C;
+    text-shadow: 0 0 10px rgba(225, 48, 108, 0);
+}
+
+.github {
+    color: #f5f5f5;
+    text-shadow: 0 0 10px rgba(245, 245, 245, 0);
+}
+
+.discord {
+    color: #7289DA;
+    text-shadow: 0 0 10px rgba(114, 137, 218, 0);
+}
+
+.more {
+    color: #aaaaaa;
+    text-shadow: 0 0 10px rgba(170, 170, 170, 0);
+}
+
+/* Hover effect with glow */
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+
+/* Underline effect on hover */
+.social-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 5px currentColor;
+}
+
+.social-icon:hover::after {
+    transform: scaleX(1);
+}
+
+/* Add a subtle pulse animation to icons */
+@keyframes subtle-icon-pulse {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+}
+
+.social-icon {
+    animation: subtle-icon-pulse 3s infinite ease-in-out;
+}
+
+/* Icon-specific pulse animations with staggered timing */
+.twitter {
+    animation-delay: 0s;
+}
+
+.instagram {
+    animation-delay: 0.6s;
+}
+
+.github {
+    animation-delay: 1.2s;
+}
+
+.discord {
+    animation-delay: 1.8s;
+}
+
+.more {
+    animation-delay: 2.4s;
+}
+
+/* Music widget with hover effects - LastFM badge removed */
+.music-widget {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    background-color: rgba(25, 25, 25, 0);
+}
+
+.music-widget:hover {
+    background-color: rgba(25, 25, 25, 0.3);
+    transform: scale(1.02);
+}
+
+.album-cover {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.album-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.album-cover:hover img {
+    transform: scale(1.08);
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.track-name {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    transition: color 0.2s ease;
+}
+
+.artist-name {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+    transition: color 0.2s ease;
+}
+
+.track-name:hover, .artist-name:hover {
+    color: #1DB954; /* Spotify green on hover */
+}
+
+
+@media (max-width: 768px) {
+    .name-glow {
+        font-size: 42px;
+    }
+    
+    .social-bar {
+        gap: 25px;
+    }
+    
+    .social-icon {
+        font-size: 24px;
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
     }
 }
 
 @media (max-width: 480px) {
     .name-glow {
+<<<<<<< HEAD
         font-size: 2.5rem;
     }
     
@@ -939,3 +2238,298 @@ body::before {
         grid-template-columns: 1fr;
     }
 } 
+=======
+        font-size: 36px;
+    }
+    
+    .social-bar {
+        gap: 20px;
+    }
+    
+    .social-icon {
+        font-size: 22px;
+    }
+    
+    .track-name, .artist-name {
+        max-width: 140px;
+    }
+}
+
+/* Add these styles for the splash screen */
+
+/* Body state when splash screen is active */
+body.loading {
+    overflow: hidden;
+}
+
+/* Splash screen styles */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease;
+}
+
+.splash-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.splash-title {
+    font-size: 64px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 2px;
+    animation: splash-glow 3s infinite alternate;
+}
+
+@keyframes splash-glow {
+    0% {
+        text-shadow: 
+            0 0 1px rgba(255, 255, 255, 0.8),
+            0 0 5px rgba(255, 255, 255, 0.6),
+            0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 15px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        text-shadow: 
+            0 0 2px rgba(255, 255, 255, 0.9),
+            0 0 10px rgba(255, 255, 255, 0.7),
+            0 0 20px rgba(255, 255, 255, 0.5),
+            0 0 30px rgba(255, 255, 255, 0.3);
+    }
+}
+
+
+.splash-enter {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+    animation: fadeInOut 2s infinite ease-in-out;
+    background: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-enter span {
+    font-size: 22px;
+    letter-spacing: 2px;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.splash-enter:hover {
+    color: #fff;
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    animation-play-state: paused;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateX(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(5px);
+    }
+}
+
+
+#main-content {
+    transition: opacity 1.5s ease, visibility 1.5s;
+}
+
+
+.name-glow, .social-bar, .music-widget {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.name-glow.animate-in, .social-bar.animate-in, .music-widget.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@media (max-width: 768px) {
+    .splash-title {
+        font-size: 48px;
+    }
+    
+    .splash-enter {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+
+.bio {
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+    padding: 0 5px;
+    max-height: 2.8em; 
+    position: relative; 
+}
+
+
+@supports not ((-webkit-line-clamp: 2) or (line-clamp: 2)) {
+    .bio::after {
+        content: "...";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 0 5px 0 10px;
+        background: linear-gradient(to right, transparent, #000 50%);
+    }
+}
+
+.presence-widget, .spotify-widget {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    background-color: rgba(25, 25, 25, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.presence-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.presence-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotify-widget {
+    margin-top: 12px;
+    border-color: rgba(29, 185, 84, 0.2);
+    padding: 12px;
+}
+
+.spotify-album-art {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.spotify-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.spotify-song {
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-artist {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.progress-bar-bg {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 8px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #1DB954;
+    border-radius: 2px;
+    transition: width 1s linear;
+}
+
+.progress-times {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 4px;
+}
+
+.presence-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.presence-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.presence-status {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 4px;
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+}
+
+.status-indicator.online { background-color: #43b581; }
+.status-indicator.idle { background-color: #faa61a; }
+.status-indicator.dnd { background-color: #f04747; }
+.status-indicator.offline { background-color: #747f8d; } 
+>>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
