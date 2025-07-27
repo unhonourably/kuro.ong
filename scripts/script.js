@@ -487,7 +487,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const audioControls = document.getElementById('audio-controls');
     const audioToggle = document.getElementById('audio-toggle');
     const volumeSlider = document.getElementById('volume-slider');
-<<<<<<< HEAD
     const splashEnter = document.querySelector('.splash-enter');
     const body = document.body;
     
@@ -497,17 +496,12 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.style.opacity = '0';
     }
     
-=======
-    const body = document.body;
-    
->>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
     if (audioControls) {
         audioControls.style.opacity = '0';
         audioControls.style.visibility = 'hidden';
     }
     
     function enterSite() {
-<<<<<<< HEAD
         if (!mainContent || !splashScreen) return;
         
         // Try to play audio
@@ -543,34 +537,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (audioControls) {
                 audioControls.style.visibility = 'visible';
                 audioControls.style.transition = 'opacity 0.5s ease';
-=======
-        backgroundAudio.play().then(() => {
-            if (audioToggle) {
-                audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-                audioToggle.classList.add('playing');
-            }
-        }).catch(error => {
-            if (audioToggle) {
-                audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-                audioToggle.classList.remove('playing');
-            }
-        });
-        
-        if (backgroundAudio && volumeSlider) {
-            backgroundAudio.volume = volumeSlider.value / 100;
-        }
-        
-        splashScreen.style.opacity = '0';
-        
-        setTimeout(() => {
-            splashScreen.style.display = 'none';
-            
-            mainContent.style.visibility = 'visible';
-            mainContent.style.opacity = '1';
-            
-            if (audioControls) {
-                audioControls.style.visibility = 'visible';
->>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
                 setTimeout(() => {
                     audioControls.style.opacity = '1';
                 }, 500);
@@ -624,15 +590,11 @@ document.addEventListener('DOMContentLoaded', function() {
             rgba(255, 255, 255, 0.2) 100%)`;
     }
     
-<<<<<<< HEAD
     // Update event listeners
     if (splashEnter) {
         splashEnter.addEventListener('click', enterSite);
         splashEnter.style.cursor = 'pointer';
     }
-=======
-    splashScreen.addEventListener('click', enterSite);
->>>>>>> b3de2b5c1ea2e895276583c973f6bc4a25b1d54f
     
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && body.classList.contains('loading')) {
