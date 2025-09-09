@@ -96,6 +96,23 @@
             }
         }
         
+        .arrow-link {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .arrow-link:hover {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
         @media (max-width: 768px) {
             .message {
                 font-size: 1.5rem;
@@ -107,10 +124,17 @@
                 margin-top: 0.2rem;
                 padding: 0;
             }
+            
+            .arrow-link {
+                top: 1.5rem;
+                right: 1.5rem;
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
+    <a href="https://docs.google.com/document/d/1-Hzw4_nU6J4-sxTaKw57kMMtM5FaqR9pnblF5QqG4OI/edit?tab=t.0" target="_blank" class="arrow-link">→</a>
     <div class="message">i love you.</div>
     <div class="hidden-message">please text me</div>
 </body>
